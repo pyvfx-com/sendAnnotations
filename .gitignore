@@ -172,6 +172,7 @@ cython_debug/
 *.so.*
 *.dll
 *.dylib
+*.ui
 
 # Qt-es
 object_script.*.Release
