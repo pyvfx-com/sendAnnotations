@@ -1,0 +1,16 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons8-order-64.png</file>
+    <file>icons8-send-100.png</file>
+    <file>icons8-paper-plane.gif</file>
+    <file>icons8-pencil-64.png</file>
+    <file>icons8-pencil-eraser-64.png</file>
+    <file>icons8-text-64.png</file>
+    <file>paper-plane.eps</file>
+    <file>pencil.png</file>
+    <file>pencil-6271487-5186102.gif</file>
+    <file>pixmap.qrc</file>
+    <file>text-fields.eps</file>
+    <file>texture.eps</file>
+  </qresource>
+</RCC>
