@@ -34,7 +34,7 @@ def sendEmail(Annotation: str, Sender: str, Receiver: str):
 
     # Login credentials (replace with your email and password/App Password)
     username = "htmldigger@gmail.com"
-    password = "aatjwosihfhcktdl"
+    password = "your app password"
 
     smtp = smtplib.SMTP(smtp_server, smtp_port)
     smtp.starttls()
