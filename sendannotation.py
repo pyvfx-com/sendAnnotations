@@ -7,7 +7,7 @@ from PySide2.QtGui import *
 from utils.drawingWidget import DrawingWidget
 from utils.validation import ScreenshotFolderCreator as sfc
 
-sfc.create_screenshot_folder()
+folder = sfc.create_screenshot_folder()
 
 class ScreenShot(QWidget):
     def __init__(self):
@@ -73,7 +73,7 @@ class ScreenShot(QWidget):
                                            self.endPoint.x() - self.startPoint.x(),
                                            self.endPoint.y() - self.startPoint.y())
 
-            temp_path = os.path.expanduser("~/.cache/screenshot/")
+            temp_path = os.path.expanduser("~/.cache/screenshot/") or folder
             if not os.path.exists(temp_path):
                 os.makedirs(temp_path)
             else:
