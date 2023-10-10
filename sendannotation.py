@@ -1,15 +1,22 @@
 import os
 import sys
 
+from PySide2.QtCore import QPoint
+from PySide2.QtGui import QBitmap
 from PySide2.QtWidgets import *
 from PySide2.QtCore import *
 from PySide2.QtGui import *
-from utils.drawingWidget import DrawingWidget
+from annotation_window import send_screenshot
 from utils.validation import ScreenshotFolderCreator as sfc
 
 folder = sfc.create_screenshot_folder()
 
+
 class ScreenShot(QWidget):
+    startPoint: QPoint
+    mask: QBitmap
+    bmask: QBitmap
+
     def __init__(self):
         super(ScreenShot, self).__init__()
         self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
@@ -40,8 +47,7 @@ class ScreenShot(QWidget):
         self.setMask(QBitmap(self.mask))
 
     def mousePressEvent(self, event):
-        """
-        Enables the drawing mode.
+        """Enables the drawing mode.
 
         :param event: Event.
         :return: None.
@@ -52,8 +58,7 @@ class ScreenShot(QWidget):
             self.isDrawing = True
 
     def mouseMoveEvent(self, event):
-        """
-        Draws the rect on the widget.
+        """Draws the rect on the widget.
 
         :param event: Event
         :return: None.
@@ -63,7 +68,6 @@ class ScreenShot(QWidget):
             self.update()
 
     def mouseReleaseEvent(self, event):
-        global check
         if event.button() == Qt.LeftButton:
             self.endPoint = event.pos()
 
@@ -73,7 +77,7 @@ class ScreenShot(QWidget):
                                            self.endPoint.x() - self.startPoint.x(),
                                            self.endPoint.y() - self.startPoint.y())
 
-            temp_path = os.path.expanduser("~/.cache/screenshot/") or folder
+            temp_path = folder
             if not os.path.exists(temp_path):
                 os.makedirs(temp_path)
             else:
@@ -83,7 +87,7 @@ class ScreenShot(QWidget):
             saved_image = QPixmap(temp_path)
             self.resize(saved_image.width(), saved_image.height())
             self.close()
-            DrawingWidget(saved_image).show()
+            send_screenshot(saved_image).show()
 
 
 if __name__ == '__main__':
