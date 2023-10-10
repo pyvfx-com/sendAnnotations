@@ -4,10 +4,11 @@ import sys
 from PySide2.QtWidgets import *
 from PySide2.QtCore import *
 from PySide2.QtGui import *
-from utils.drawingWidget import DrawingWidget
+from sendAnnotations.annotation_window import send_screenshot
 from utils.validation import ScreenshotFolderCreator as sfc
 
 folder = sfc.create_screenshot_folder()
+
 
 class ScreenShot(QWidget):
     def __init__(self):
@@ -83,7 +84,7 @@ class ScreenShot(QWidget):
             saved_image = QPixmap(temp_path)
             self.resize(saved_image.width(), saved_image.height())
             self.close()
-            DrawingWidget(saved_image).show()
+            send_screenshot(saved_image).show()
 
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 import platform
 import os
 
+
 class ScreenshotFolderCreator:
     def __init__(self):
         pass
@@ -22,19 +23,17 @@ class ScreenshotFolderCreator:
         os_name = ScreenshotFolderCreator.get_os_name()
 
         if os_name == "Windows":
-            # Create a 'screenshot' folder in the current working directory
-            screenshot_folder = os.path.join(os.getcwd(), "screenshot")
+            screenshot_folder = os.path.expanduser("~/.cache/screenshot/")
         else:
-            # Create a 'screenshot' folder in the current working directory
-            screenshot_folder = os.path.join(os.getcwd(), "screenshot")
+            screenshot_folder = os.path.expanduser("~/.cache/screenshot/")
 
         try:
             os.mkdir(screenshot_folder)
-            print(f"Created 'screenshot' folder at: {screenshot_folder}")
-        except FileExistsError:
-            print(f"'screenshot' folder already exists at: {screenshot_folder}")
+        except FileExistsError as fe:
+            print(fe)
 
         return screenshot_folder
+
 
 if __name__ == "__main__":
     screenshot_creator = ScreenshotFolderCreator()
